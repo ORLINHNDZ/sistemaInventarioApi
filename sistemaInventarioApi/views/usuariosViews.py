@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import permissions
+import django_filters.rest_framework
 from rest_framework import generics
 from sistemaInventarioApi.serializers import UsuarioSerializer
 from sistemaInventarioApi.models import Usuario
@@ -13,6 +14,8 @@ class UsuarioCreate(generics.CreateAPIView):
 class UsuarioList(generics.ListAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['nombreUsuario']
 
 #Update Api Usuario
 class UsuarioUpdate(generics.RetrieveUpdateAPIView):

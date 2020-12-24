@@ -6,7 +6,11 @@
       >
         <md-card>
           <md-card-header data-background-color="green">
-            <md-button  data-background-color="blue" :to="{name:'InventarioAgregar'}">Inventariar Producto</md-button>
+            <div class="right">
+            <md-button class="md-plane md-primary" data-background-color="blue" :to="{name:'InventarioAgregar'}">
+            <md-icon>add</md-icon>
+            </md-button>
+            </div>
            
             <h4 class="title">Inventario</h4>
             <p class="category"></p>
@@ -23,9 +27,11 @@
 </template>
 
 <style lang="scss" scoped>
-  md-button {
-    display: position right;
+  .right {
+    padding-bottom: -10px;
+    text-align: right;
   }
+  
 </style>
 
 <script>

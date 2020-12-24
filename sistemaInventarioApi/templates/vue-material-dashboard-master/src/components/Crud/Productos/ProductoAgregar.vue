@@ -2,7 +2,7 @@
     <form novalidate class="md-layout" >
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
-          <div v-if="form.id!=null" class="md-title">Editar Producto</div>
+          <div v-if="form.id!=''" class="md-title">Editar Producto</div>
           <div v-else class="md-title">Nuevo Producto</div>
           
           

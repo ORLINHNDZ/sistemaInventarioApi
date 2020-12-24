@@ -1,6 +1,12 @@
 <template>
   <div>
-    
+     <div class="control">
+        <md-field>
+        <label>Search</label>
+        <md-input v-model="search" type="text" v-on:keyup.enter="searchData"></md-input>
+        <md-button class="md-dense md-raised md-primary" v-on:click="searchData">Buscar</md-button>
+        </md-field>
+      </div>
     <md-table>
       <md-table-row >
         <md-table-cell>Nombre de Usuario</md-table-cell>
@@ -45,6 +51,13 @@
         </md-table-cell>
       </md-table-row>
     </md-table>
+    <div class="center" >
+    <nav class="pagination" role="navegation" aria-label="pagination">
+      <md-button  class="pagination-previous" v-on:click="changePage( page - 1 )">Anterior</md-button>
+          <a class="b"> {{page}} </a>
+      <md-button  class="pagination-next" v-on:click="changePage( page + 1 )" >Siguiente</md-button>
+    </nav>
+    </div>
   </div>
 </template>
 
@@ -55,7 +68,10 @@ export default {
   data() {
     return {
     
-      usuarios: []
+      usuarios: [],
+      page: 1,
+      pages: 1,
+      search: ""
 
     }
   },
@@ -65,11 +81,24 @@ export default {
   methods:{
 
     cargarEntrada(){
+       const params = {
+        page: this.page,
+        nombreUsuario: this.search
+      }
        let vue = this;
-     axios.get('http://localhost:8000/api/usuarios').then((res) => {
+     axios.get('http://localhost:8000/api/usuarios', { params }).then((res) => {
                 console.log(res.data)
                 this.usuarios = res.data.results
+                this.pages = res.data.pages
             });
+    },
+    changePage (page){
+      this.page = (page <= 0 || page > this.pages) ? this.pages : page
+      this.cargarEntrada()
+    },
+    searchData(){
+      this.page = 1;
+      this.cargarEntrada();
     },
     eliminarEntrada(id){
 
@@ -87,3 +116,16 @@ export default {
   }
 }
 </script>
+
+<style>
+.center {
+  margin: center;
+  width: 95%; 
+  padding: 10px;
+  text-align: center;
+}
+a.b {
+  font-size: large;
+  
+}
+</style>

@@ -6,8 +6,12 @@
       >
         <md-card>
           <md-card-header data-background-color="green">
-            <md-button  data-background-color="blue" :to="{name:'EmpleadoAgregar'}">Agregar Nuevo empleado</md-button>
-           
+            <div class="right">
+            <md-button class="md-plane md-primary" data-background-color="blue" :to="{name:'EmpleadoAgregar'}">
+            <md-icon>add</md-icon>
+            </md-button>
+            </div>
+                      
             <h4 class="title">Empleados</h4>
             <p class="category"></p>
           </md-card-header>
@@ -23,9 +27,11 @@
 </template>
 
 <style lang="scss" scoped>
-  md-button {
-    display: position right;
+  .right {
+    padding-bottom: -10px;
+    text-align: right;
   }
+  
 </style>
 
 <script>

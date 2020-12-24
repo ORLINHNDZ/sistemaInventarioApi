@@ -1,3 +1,4 @@
+import django_filters.rest_framework
 from rest_framework import generics
 from sistemaInventarioApi.serializers import InventarioSerializer
 from sistemaInventarioApi.models import Inventario
@@ -10,6 +11,8 @@ class InventarioCreate(generics.CreateAPIView):
 class InventarioList(generics.ListAPIView):
     queryset = Inventario.objects.all()
     serializer_class = InventarioSerializer
+    filter_backends = [django_filters.rest_framework.DjangoFilterBackend]
+    filterset_fields = ['producto']
 
 #Update Api Inventario
 class InventarioUpdate(generics.RetrieveUpdateAPIView):
