@@ -97,53 +97,43 @@ class Usuario(AbstractBaseUser):
     MASCULINO = "M"
     FEMENINO = "F"
     GENERO = [(MASCULINO, "Masculino"), (FEMENINO, "Femenino")]
-    roles = models.ForeignKey(Roles, on_delete=models.CASCADE)
-    nombre_usuario = models.CharField(max_length=30, unique=True)
-    is_active = models.BooleanField(default=True)
-    is_admin = models.BooleanField(default=False)
+    id = models.AutoField(primary_key=True)
+    roles = models.ForeignKey(Roles, on_delete=models.CASCADE, null=True)
+    nombreUsuario = models.CharField(max_length=30, unique=True)
+    isActive = models.BooleanField(default=True, null=True)
+    isAdmin = models.BooleanField(default=False, null=True)
     identidad = models.CharField(max_length=13, unique=True)
-    primer_nombre = models.CharField(max_length=20)
-    segundo_apellido = models.CharField(max_length=20, blank=True)
-    fecha_nacimiento = models.DateField()
+    primerNombre = models.CharField(max_length=20)
+    apellido = models.CharField(max_length=20, blank=True)
+    fechaNacimiento = models.DateField(null=True)
     genero = models.CharField(max_length=10, choices=GENERO, null=True)
     correo = models.EmailField(max_length=254, unique=False, blank=True, null=True)
     telefono = models.CharField(max_length=8)
-    cedula = models.CharField(max_length=13)
     rtn = models.CharField(max_length=14)
     creacion = models.DateTimeField(auto_now_add=True)
     direccion = models.CharField(max_length=50)
-    ultima_modificacion = models.DateTimeField(auto_now=True)
+    ultimaModificacion = models.DateTimeField(auto_now=True)
 
     objects = UserManager()
 
-    USERNAME_FIELD = "nombre_usuario"
+    USERNAME_FIELD = "nombreUsuario"
     REQUIRED_FIELDS = [
         "identidad",
-        "primer_nombre",
-        "fecha_nacimiento",
+        "primerNombre",
+        "fechaNacimiento",
         "genero"
     ]
 
 
 class TipoProducto (models.Model):
-    Abarroteria = 1
-    Repuestos = 2
-    Comida = 3
-
-    TIPOS_PRODUCTOS = (
-        (Abarroteria, "ABARROTERIA"),
-        (Repuestos, "REPUESTOS"),
-        (Comida, "COMIDA")
-
-    )
-    id = models.PositiveSmallIntegerField(choices=TIPOS_PRODUCTOS, primary_key=True)
-
+    id = models.AutoField(primary_key=True)
+    tipoProducto = models.CharField(max_length=30)
     def __str__(self):
-        return self.get_id_display()
+        return self.tipoProducto
 
 class Producto(ModeloBase):
     id = models.AutoField(primary_key=True)
-    tipoProducto = models.ForeignKey(TipoProducto, on_delete=models.CASCADE)
+    tipoProducto = models.ForeignKey(TipoProducto, on_delete=models.CASCADE, null=True )
     nombreProducto = models.CharField(max_length=30)
     imagen = models.ImageField(upload_to=None, height_field=None, width_field=None, max_length=100, null=True)
     marca = models.CharField(max_length=50)
@@ -153,6 +143,7 @@ class Producto(ModeloBase):
 
     def __str__(self):
         return self.nombreProducto
+
 
 
 class Pedido (ModeloBase):
@@ -184,16 +175,14 @@ class Entrada (ModeloBase):
     TIPOENTRADA = [(DEVOLUCION, "Devolucion"), (COMPRA, "Compra")]
     estadoPedido = models.CharField(max_length=10, choices=TIPOENTRADA, null=True)
     fecha = models.DateField
-    precioCosto = models.DecimalField(max_digits=5, decimal_places=2)
+    inventario = models.ForeignKey(Inventario, on_delete=models.CASCADE)
     cantidad = models.IntegerField
-    numeroFactura = models.CharField(max_length=100)
-
-
+    numeroFactura = models.CharField(max_length=100, null=True)
 
 
 class Factura (ModeloBase):
     id = models.AutoField(primary_key=True)
-    Cliente = models.ForeignKey(Usuario, related_name='Cliente', on_delete=models.CASCADE)
+    Cliente = models.ForeignKey(Usuario, related_name='Cliente', on_delete=models.CASCADE)#Update
     Vendedor = models.OneToOneField(Usuario, related_name='Vendedor', on_delete=models.CASCADE, null=True, blank=True)
     nombreCliente = models.CharField(max_length=20, null=True, blank=True)
     rtn = models.CharField(max_length=14)

@@ -15,23 +15,23 @@ class UsuarioSerializer(serializers.ModelSerializer):
     rol = RolesSerializer
     class Meta:
         model = Usuario
-        fields = ['genero', 'nombre_usuario', 'is_active', 'is_admin', 'identidad',
-                  'primer_nombre', 'segundo_apellido', 'fecha_nacimiento', 'genero',
-                  'roles', 'correo', 'telefono', 'cedula', 'rtn', 'creacion', 'direccion',
-                  'ultima_modificacion']
+        fields = ['id', 'genero', 'nombreUsuario', 'isActive', 'isAdmin', 'identidad',
+                  'primerNombre', 'apellido', 'fechaNacimiento', 'genero',
+                  'roles', 'correo', 'telefono', 'rtn', 'creacion', 'direccion',
+                  'ultimaModificacion']
 
 #Serializador TipoProducto
 class TipoProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoProducto
-        fields = ['Abarroteria', 'Repuestos', 'Comida']
+        fields = ['id', 'tipoProducto']
 
 #Serializador Producto
 class ProductoSerializer(serializers.ModelSerializer):
     tipoPro = TipoProductoSerializer
     class Meta:
         model = Producto
-        fields = ['tipoProducto', 'nombreProducto', 'imagen', 'marca', 'isv', 'nombrePopular',
+        fields = ['id', 'tipoProducto', 'nombreProducto', 'imagen', 'marca', 'isv', 'nombrePopular',
                   'descripcionProducto']
 
 #Serializador Pedido
@@ -42,9 +42,11 @@ class PedidoSeializer(serializers.ModelSerializer):
 
 #Serializador Inventario
 class InventarioSerializer(serializers.ModelSerializer):
+    tipoUsuarios: UsuarioSerializer
+    tipoProductos: ProductoSerializer
     class Meta:
         model = Inventario
-        fields = ['producto', 'proveedor', 'precioCosto', 'precioVenta', 'existencia']
+        fields = ['id', 'producto', 'proveedor', 'precioCosto', 'precioVenta', 'existencia']
 
 #Serializador Entradas
 class EntradasSerializer(serializers.ModelSerializer):
@@ -57,7 +59,5 @@ class SalidasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Salida
         fields = ['factura', 'tipoSalida', 'fecha', 'precio','cantidad']
-
-
 
 
