@@ -1,4 +1,5 @@
 from django.urls import include, path
+from django.contrib import admin
 from sistemaInventarioApi.views.usuariosViews import UsuarioCreate, UsuarioList, UsuarioUpdate, UsuarioDelete
 from sistemaInventarioApi.views.productosViews import ProductoCreate, ProductoList, ProductoUpdate, ProductoDelete
 from sistemaInventarioApi.views.pedidosViews import PedidosCreate, PedidosList, PedidosUpdate, PedidosDelete
@@ -9,6 +10,10 @@ from sistemaInventarioApi.views.tipoProductosViews import tipoProductoCreate, ti
 from sistemaInventarioApi.views.rolesViews import RolesCreate, RolesList, RolesUpdate, RolesDelete
 
 from rest_framework import routers
+from rest_framework_simplejwt.views import (
+    TokenObtainPairView,
+    TokenRefreshView,
+)
 
 router = routers.DefaultRouter()
 
@@ -18,6 +23,10 @@ urlpatterns = [
     # Usuarios Paths
     path('', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('admin/', admin    .site.urls),
+    path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('', include(router.urls)),
     path('api/usuarios', UsuarioList.as_view(), name='usuarios_list'),
     path('api/usuarios/create', UsuarioCreate.as_view(), name='usuarios_create'),
     path('api/usuarios/<int:pk>/edit', UsuarioUpdate.as_view(), name='usuarios_update'),

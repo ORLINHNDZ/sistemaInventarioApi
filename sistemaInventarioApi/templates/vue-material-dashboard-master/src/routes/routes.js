@@ -14,10 +14,27 @@ import UpgradeToPRO from "@/pages/UpgradeToPRO.vue";
 import ProductoAgregar from "@/components/Crud/Productos/ProductoAgregar.vue";
 import EmpleadoAgregar from "@/components/Crud/Empleados/EmpleadoAgregar.vue";
 import InventarioAgregar from "@/components/Crud/Inventario/InventarioAgregar.vue";
+import Login from "@/components/Views/Login.vue";
+import Register from "@/components/Views/Register.vue";
+
+
 
 
 const routes = [
     {
+        path: "/login",
+        name: "Login",
+        component: Login
+      },
+      {
+        path: "/register",
+        name: "Register",
+        component: Register
+      },
+
+    
+    {            
+
         path: "/",
         component: DashboardLayout,
         redirect: "/dashboard",
@@ -130,10 +147,13 @@ const routes = [
                 name: "InventarioEditar",
                 component: InventarioAgregar
             }, 
-           */
-           
+           */ 
+         
+
         ]
+        
     }
 ];
 
 export default routes;
+
