@@ -1,15 +1,15 @@
 <template>
   <div class="login">
-    <h1 class="title">Login in the page</h1>
+    <h1 class="title">INICIO DE SESIÓN</h1>
     <form action class="form" @submit.prevent="login">
-      <label class="form-label" for="#email">Email:</label>
+      <label class="form-label" for="#username">username:</label>
       <input
-        v-model="email"
+        v-model="username"
         class="form-input"
-        type="email"
-        id="email"
+        type="text"
+        id="username"
         required
-        placeholder="Email"
+        placeholder="username"
       >
       <label class="form-label" for="#password">Password:</label>
       <input
@@ -19,7 +19,7 @@
         id="password"
         placeholder="Password"
       >
-      <p v-if="error" class="error">Has introducido mal el email o la contraseña.</p>
+     
       <input class="form-submit" type="submit" value="Login">
     </form>
     <p class="msg">¿No tienes cuenta?
@@ -29,24 +29,30 @@
 </template>
 
 <script>
-import auth from "@/logic/auth";
+import axios from 'axios';
+import { loginUser } from "@/logic/auth"
+
+
 export default {
-  data: () => ({
-    email: "",
-    password: "",
-    error: false
-  }),
+    name: 'login',
+    data() {
+        return {
+            username: '',
+            password: ''
+        }
+    },
   methods: {
     async login() {
       try {
-        await auth.login(this.email, this.password);
-        this.$router.push("/");
-      } catch (error) {
-        this.error = true;
+    await loginUser(this.username, this.password)
+    this.$router.push('/')
+      }
+      catch (err) {
+          alert(`Error: ${err}`)
       }
     }
   }
-};
+  }
 </script>
 
 <style lang="scss" scoped>

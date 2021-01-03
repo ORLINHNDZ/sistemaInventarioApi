@@ -39,7 +39,6 @@ class UserManager (BaseUserManager):
         identidad,
         primer_nombre,
         primer_apellido,
-        fecha_nacimiento,
         genero,
         password=None,
 
@@ -49,7 +48,6 @@ class UserManager (BaseUserManager):
             or not nombre_usuario
             or not primer_nombre
             or not primer_apellido
-            or not fecha_nacimiento
             or not genero
         ):
             raise ValueError("Asegurese de llenar todos los campos")
@@ -60,7 +58,6 @@ class UserManager (BaseUserManager):
             identidad=identidad,
             primer_nombre=primer_nombre,
             primer_apellido=primer_apellido,
-            fecha_nacimiento=fecha_nacimiento,
             genero=genero
         )
 
@@ -74,7 +71,6 @@ class UserManager (BaseUserManager):
         identidad,
         primer_nombre,
         primer_apellido,
-        fecha_nacimiento,
         genero,
         password,
     ):
@@ -84,7 +80,6 @@ class UserManager (BaseUserManager):
             identidad=identidad,
             primer_nombre=primer_nombre,
             primer_apellido=primer_apellido,
-            fecha_nacimiento=fecha_nacimiento,
             genero=genero,
 
         )
@@ -113,15 +108,15 @@ class Usuario(AbstractBaseUser):
     creacion = models.DateTimeField(auto_now_add=True)
     direccion = models.CharField(max_length=50)
     ultimaModificacion = models.DateTimeField(auto_now=True)
+    password = models.CharField(max_length=255)
 
     objects = UserManager()
 
-    USERNAME_FIELD = "nombreUsuario"
+    USERNAME_FIELD = "correo"
     REQUIRED_FIELDS = [
         "identidad",
         "primerNombre",
-        "fechaNacimiento",
-        "genero"
+        "apellido"
     ]
 
 
@@ -130,6 +125,13 @@ class TipoProducto (models.Model):
     tipoProducto = models.CharField(max_length=30)
     def __str__(self):
         return self.tipoProducto
+
+
+class Descuento (ModeloBase):
+    id = models.AutoField(primary_key=True)
+    descripcion = models.CharField(max_length=50, null=True, blank=True)
+    porcentaje = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+
 
 class Producto(ModeloBase):
     id = models.AutoField(primary_key=True)
@@ -140,9 +142,11 @@ class Producto(ModeloBase):
     isv = models.DecimalField(max_digits=5, decimal_places=2)
     nombrePopular = models.CharField(max_length=50, null=True)
     descripcionProducto = models.CharField(max_length=50, null=True)
+    descuento = models.ForeignKey(Descuento, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         return self.nombreProducto
+
 
 
 
@@ -156,6 +160,7 @@ class Pedido (ModeloBase):
     PAGADO = "P"
     ESTADOPEDIDO = [(ENCURSO, "En Curso"), (PAGADO, "Pagado")]
     estadoPedido = models.CharField(max_length=10, choices=ESTADOPEDIDO, null=True)
+
 
 
 class Inventario (ModeloBase):
@@ -190,11 +195,6 @@ class Factura (ModeloBase):
     fecha = models.DateTimeField(auto_now_add=True, blank=True)
     iva = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
-
-class Descuento (ModeloBase):
-    id = models.AutoField(primary_key=True)
-    descripcion = models.CharField(max_length=50, null=True, blank=True)
-    porcentaje = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
 
 
 class FacturaDetalle (ModeloBase):

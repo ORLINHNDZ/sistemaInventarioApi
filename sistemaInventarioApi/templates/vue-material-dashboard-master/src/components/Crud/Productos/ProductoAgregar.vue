@@ -14,9 +14,9 @@
           <div class="md-layout md-gutter">
              <div class="md-layout-item md-small-size-100">
               <md-field >
-                <label for="tipoProductos">Tipo de Producto</label>
-                <md-select id="tipoProductos" name="tipoProductos" v-model="form.tipoProductos">
-                  <md-option v-for="tipoProductos in tipoPro" :value="tipoProductos.id" :key="tipoProductos.id">{{tipoProductos.tipoProducto}}</md-option>
+                <label for="tipoProducto">Tipo de Producto</label>
+                <md-select id="tipoProducto" name="tipoProducto" v-model="form.tipoProducto">
+                  <md-option v-for="tipoProducto in tipoPro" :value="tipoProducto.id" :key="tipoProducto.id">{{tipoProducto.tipoProducto}}</md-option>
                  
                 </md-select>
               </md-field>
@@ -72,7 +72,18 @@
                 
               </md-field>
 
-            <p>Seleccion:{{form.tipoProductos}}</p>
+               
+             <div class="md-layout-item md-small-size-100">
+              <md-field >
+                <label for="descuento">Descuento</label>
+                <md-select id="descuento" name="descuento" v-model="form.descuento">
+                  <md-option v-for="descuento in desc" :value="descuento.id" :key="descuento.id">{{descuento.descripcion}}</md-option>
+                 
+                </md-select>
+              </md-field>
+            </div>
+
+            
         </md-card-content>
 
         
@@ -114,20 +125,27 @@ export default {
                  console.log(res.data)
                 this.tipoPro = res.data.results
             })
+    
+     axios.get('http://localhost:8000/api/descuentos').then((res) => {
+                 console.log(res.data)
+                this.desc = res.data.results
+            })
 },
   
     data() {
       return {
          tipoPro : [],
+         desc: [],
          form: {
           id: '',
-          tipoProductos : '',
+          tipoProducto : '',
           nombreProducto: '',
           imagen: null,
           marca: '',
           isv: '',
           nombrePopular: '',
-          descripcionProducto: ''
+          descripcionProducto: '',
+          descuento: ''
       }
       }
     },
@@ -135,13 +153,14 @@ export default {
       guardarProducto(){
         var datos ={
           id:this.form.id,
-          tipoProducto:this.form.tipoProductos,
+          tipoProducto:this.form.tipoProducto,
           nombreProducto:this.form.nombreProducto,
           imagen:this.form.imagen,
           marca:this.form.marca,
           isv:this.form.isv,
           nombrePopular:this.form.nombrePopular,
-          descripcionProducto:this.form.descripcionProducto
+          descripcionProducto:this.form.descripcionProducto,
+          descuento:this.form.descuento
         }
         var router = this.$router
         var id = this.$route.params.id

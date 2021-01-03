@@ -16,7 +16,7 @@ import EmpleadoAgregar from "@/components/Crud/Empleados/EmpleadoAgregar.vue";
 import InventarioAgregar from "@/components/Crud/Inventario/InventarioAgregar.vue";
 import Login from "@/components/Views/Login.vue";
 import Register from "@/components/Views/Register.vue";
-
+import { isLoggedIn } from "@/logic/auth"
 
 
 
@@ -24,7 +24,10 @@ const routes = [
     {
         path: "/login",
         name: "Login",
-        component: Login
+        component: Login,
+        meta: {
+            allowAnonymous: true
+          }
       },
       {
         path: "/register",
@@ -152,8 +155,12 @@ const routes = [
 
         ]
         
+        
     }
+    
 ];
+
+  
 
 export default routes;
 

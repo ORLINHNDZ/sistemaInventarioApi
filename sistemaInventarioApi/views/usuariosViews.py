@@ -10,6 +10,7 @@ from rest_framework.permissions import IsAuthenticated
 #Create Api Usuario
 class UsuarioCreate(generics.CreateAPIView):
     serializer_class = UsuarioSerializer
+    permission_classes = [IsAuthenticated]
 
 #List Api Usuario
 class UsuarioList(generics.ListAPIView):
@@ -23,9 +24,11 @@ class UsuarioList(generics.ListAPIView):
 class UsuarioUpdate(generics.RetrieveUpdateAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    permission_classes = [IsAuthenticated]
 
 #Delete Api View
 class UsuarioDelete(generics.DestroyAPIView):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
+    permission_classes = [IsAuthenticated]
 

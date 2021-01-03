@@ -32,6 +32,13 @@ import MaterialDashboard from "./material-dashboard";
 import Chartist from "chartist";
 import VuePaginate from 'vue-paginate';
 
+//JWT Authentication
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+import jwt_decode from 'jwt-decode'
+import Vuex from 'vuex'
+import { isLoggedIn } from "@/logic/auth"
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -46,6 +53,24 @@ Vue.use(GlobalComponents);
 Vue.use(GlobalDirectives);
 Vue.use(Notifications);
 Vue.use(VuePaginate);
+Vue.use(Vuex);
+Vue.use(VueAxios, axios);
+
+//AUTH 
+router.beforeEach((to, from, next) => {
+  if (to.name == 'login' && isLoggedIn()) {
+    next({ path: '/' })
+  }
+  else if (!to.meta.allowAnonymous && !isLoggedIn()) {
+      next({
+          path: '/login',
+          query: { redirect: to.fullPath }
+      })
+  }
+  else {
+      next()
+  }
+})
 
 /* eslint-disable no-new */
 new Vue({

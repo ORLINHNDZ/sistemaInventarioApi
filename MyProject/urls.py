@@ -8,7 +8,7 @@ from sistemaInventarioApi.views.entradasViews import EntradaCreate, EntradaList,
 from sistemaInventarioApi.views.salidasViews import SalidaCreate, SalidaList, SalidaUpdate, SalidaDelete
 from sistemaInventarioApi.views.tipoProductosViews import tipoProductoCreate, tipoProductoList, tipoProductoUpdate, tipoProductoDelete
 from sistemaInventarioApi.views.rolesViews import RolesCreate, RolesList, RolesUpdate, RolesDelete
-
+from sistemaInventarioApi.views.descuentosViews import DescuentoCreate, DescuentoList, DescuentoUpdate, DescuentoDelete
 from rest_framework import routers
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
@@ -46,6 +46,11 @@ urlpatterns = [
     path('api/tipoProductos/create', tipoProductoCreate.as_view(), name='tipoProductos_create'),
     path('api/tipoProductos/<int:pk>/edit', tipoProductoUpdate.as_view(), name='tipoProductos_update'),
     path('api/tipoProductos/<int:pk>/delete', tipoProductoDelete.as_view(), name='tipoProductos_delete'),
+    # Descuentos Paths
+    path('api/descuentos', DescuentoList.as_view(), name='descuentos_list'),
+    path('api/descuentos/create', DescuentoCreate.as_view(), name='descuentos_create'),
+    path('api/descuentos/<int:pk>/edit', DescuentoUpdate.as_view(), name='descuentos_update'),
+    path('api/descuentos/<int:pk>/delete', DescuentoDelete.as_view(), name='descuentos_delete'),
     # Pedidos Paths
     path('api/pedidos', PedidosList.as_view(), name='pedidos_list'),
     path('api/pedidos/create', PedidosCreate.as_view(), name='pedidos_create'),
