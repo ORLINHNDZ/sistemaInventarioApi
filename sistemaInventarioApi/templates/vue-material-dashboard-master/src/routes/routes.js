@@ -15,8 +15,10 @@ import ProductoAgregar from "@/components/Crud/Productos/ProductoAgregar.vue";
 import EmpleadoAgregar from "@/components/Crud/Empleados/EmpleadoAgregar.vue";
 import InventarioAgregar from "@/components/Crud/Inventario/InventarioAgregar.vue";
 import Login from "@/components/Views/Login.vue";
-import Register from "@/components/Views/Register.vue";
-import { isLoggedIn } from "@/logic/auth"
+import Checkout from "@/pages/Checkout.vue";
+
+
+
 
 
 
@@ -29,12 +31,6 @@ const routes = [
             allowAnonymous: true
           }
       },
-      {
-        path: "/register",
-        name: "Register",
-        component: Register
-      },
-
     
     {            
 
@@ -131,13 +127,14 @@ const routes = [
                 component: InventarioAgregar
             }, 
             // Ventas 
-            /*
+            
             {
-                path: "InventarioList",
-                name: "Lista de inventario",
-                component: InventarioList
+                path: "/checkout",
+                name: "Checkout",
+                component: Checkout
             },
-
+           
+            /*
             {
                 path: "/inventario/agregar",
                 name: "InventarioAgregar",

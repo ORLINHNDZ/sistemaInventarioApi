@@ -1,4 +1,5 @@
 <template>
+<div class="center">
     <form novalidate class="md-layout" >
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
@@ -81,6 +82,12 @@
                  
                 </md-select>
               </md-field>
+
+              <md-field >
+                <label for="isv">Precio</label>
+                <md-input type="number" id="precio" name="precio" autocomplete="precio" v-model="form.precio" />
+               
+              </md-field>
             </div>
 
             
@@ -98,6 +105,7 @@
 
       
     </form>
+    </div>
   
 </template>
 
@@ -145,7 +153,8 @@ export default {
           isv: '',
           nombrePopular: '',
           descripcionProducto: '',
-          descuento: ''
+          descuento: '',
+          precio: ''
       }
       }
     },
@@ -160,7 +169,8 @@ export default {
           isv:this.form.isv,
           nombrePopular:this.form.nombrePopular,
           descripcionProducto:this.form.descripcionProducto,
-          descuento:this.form.descuento
+          descuento:this.form.descuento,
+          precio:this.form.precio
         }
         var router = this.$router
         var id = this.$route.params.id
@@ -199,3 +209,11 @@ export default {
     }
 
 </script>
+<style lang="scss" scoped>
+  .center {
+  margin: center;
+  width: 100%; 
+  padding: 10px;
+  text-align: center;
+}
+</style>

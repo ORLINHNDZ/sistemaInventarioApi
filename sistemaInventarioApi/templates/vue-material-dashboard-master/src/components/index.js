@@ -9,6 +9,7 @@ import OrderedTable from "./Tables/OrderedTable.vue";
 import SimpleTable from "./Crud/Productos/SimpleTable.vue";
 import ProductoAgregar from "./Crud/Productos/ProductoAgregar.vue";
 
+
 export {
   ChartCard,
   NavTabsCard,
@@ -17,4 +18,5 @@ export {
   OrderedTable,
   SimpleTable,
   ProductoAgregar
+
 };

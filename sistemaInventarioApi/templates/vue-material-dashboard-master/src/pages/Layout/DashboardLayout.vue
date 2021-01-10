@@ -15,7 +15,7 @@
         <md-icon>person</md-icon>
         <p>User Profile</p>
       </sidebar-link>
-      <sidebar-link to="/">
+      <sidebar-link to="/checkout">
         <md-icon>content_paste</md-icon>
         <p>Ventas</p>
       </sidebar-link>

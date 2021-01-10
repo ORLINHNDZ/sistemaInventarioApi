@@ -17,6 +17,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import App from "./App";
+import MdModalDialog from 'vue-material-modal-dialog'
+
 
 // router setup
 import routes from "./routes/routes";
@@ -39,6 +41,18 @@ import jwt_decode from 'jwt-decode'
 import Vuex from 'vuex'
 import { isLoggedIn } from "@/logic/auth"
 
+//Bootstrap
+
+import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
+
+import NavBar from '@/components/Views/NavBar.vue'
+import ProductList from '@/components/Views/ProductList.vue'
+import ShoppingCart from '@/components/Views/ShoppingCart.vue'
+
 // configure router
 const router = new VueRouter({
   routes, // short for routes: routes
@@ -55,6 +69,17 @@ Vue.use(Notifications);
 Vue.use(VuePaginate);
 Vue.use(Vuex);
 Vue.use(VueAxios, axios);
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+Vue.component('NavBar', NavBar)
+Vue.component('ProductList', ProductList)
+Vue.component('ShoppingCart', ShoppingCart)
+Vue.use(MdModalDialog)
+
+// Filters
+Vue.filter('currency', function (value) {
+    return '$' + parseFloat(value/100).toFixed(2);
+});
 
 //AUTH 
 router.beforeEach((to, from, next) => {
