@@ -1,5 +1,6 @@
 <template>
     <form novalidate class="md-layout" >
+      <div class="center">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div v-if="form.id!=''" class="md-title">Editar Registro</div>
@@ -73,7 +74,7 @@
           
         </md-card-actions>
       </md-card>
-
+      </div>
       
     </form>
   
@@ -170,4 +171,22 @@ export default {
 md-card-content {
   margin: 120 auto;
 }
+  .center {
+  margin: center;
+  width: 100%; 
+  padding: 10px;
+  text-align: center;
+}
+
+.centera {
+  margin: center;
+  width: 95%; 
+  padding: 10px;
+  text-align: center;
+}
+a.b {
+  font-size: large;
+  
+}
+
 </style>

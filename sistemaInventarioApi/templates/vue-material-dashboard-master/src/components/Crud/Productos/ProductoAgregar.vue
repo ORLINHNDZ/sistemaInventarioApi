@@ -1,6 +1,7 @@
 <template>
-<div class="center">
+
     <form novalidate class="md-layout" >
+    <div class="center">
       <md-card class="md-layout-item md-size-50 md-small-size-100">
         <md-card-header>
           <div v-if="form.id!=''" class="md-title">Editar Producto</div>
@@ -103,9 +104,9 @@
         </md-card-actions>
       </md-card>
 
-      
+      </div>
     </form>
-    </div>
+
   
 </template>
 
@@ -215,5 +216,16 @@ export default {
   width: 100%; 
   padding: 10px;
   text-align: center;
+}
+
+.centera {
+  margin: center;
+  width: 95%; 
+  padding: 10px;
+  text-align: center;
+}
+a.b {
+  font-size: large;
+  
 }
 </style>

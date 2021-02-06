@@ -8,32 +8,32 @@
     >
       <mobile-menu slot="content"></mobile-menu>
       <sidebar-link to="/dashboard">
-        <md-icon>dashboard</md-icon>
-        <p>Dashboard</p>
+        <md-icon>analytics</md-icon>
+        <p>Reportes</p>
       </sidebar-link>
       <sidebar-link to="/empleadosList">
         <md-icon>person</md-icon>
-        <p>User Profile</p>
+        <p>Usuarios</p>
       </sidebar-link>
       <sidebar-link to="/checkout">
-        <md-icon>content_paste</md-icon>
+        <md-icon>add_shopping_cart</md-icon>
         <p>Ventas</p>
       </sidebar-link>
-      <sidebar-link to="/List">
+      <sidebar-link to="/chart">
         <md-icon>library_books</md-icon>
         <p>Recibos</p>
       </sidebar-link>
       <sidebar-link to="/table">
-        <md-icon>bubble_chart</md-icon>
+        <md-icon>fact_check</md-icon>
         <p>Productos</p>
       </sidebar-link>
       <sidebar-link to="/InventarioList">
-        <md-icon>notifications</md-icon>
+        <md-icon>inventory_2</md-icon>
         <p>Inventario</p>
       </sidebar-link>
       <sidebar-link to="/upgrade" class="active-pro">
         <md-icon>unarchive</md-icon>
-        <p>Reportes</p>
+        <p>Acerca</p>
       </sidebar-link>
     </side-bar>
 

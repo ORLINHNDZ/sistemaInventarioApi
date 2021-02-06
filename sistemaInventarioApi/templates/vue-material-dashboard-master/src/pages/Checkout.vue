@@ -11,7 +11,7 @@
      
         <h1 class="center">Productos a Pagar</h1>
         <shopping-cart></shopping-cart>
-        <p class="center"><b>Total Cost: ${{ totalCost }}</b></p>
+        <p class="center"><b>Total: ${{ totalCost }}</b></p>
      
     </div>
     

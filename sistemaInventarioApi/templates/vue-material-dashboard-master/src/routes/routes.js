@@ -16,7 +16,7 @@ import EmpleadoAgregar from "@/components/Crud/Empleados/EmpleadoAgregar.vue";
 import InventarioAgregar from "@/components/Crud/Inventario/InventarioAgregar.vue";
 import Login from "@/components/Views/Login.vue";
 import Checkout from "@/pages/Checkout.vue";
-
+import Chart from "@/pages/Chart.vue";
 
 
 
@@ -31,6 +31,7 @@ const routes = [
             allowAnonymous: true
           }
       },
+      
     
     {            
 
@@ -132,6 +133,13 @@ const routes = [
                 path: "/checkout",
                 name: "Checkout",
                 component: Checkout
+            },
+             // Charts 
+            
+             {
+                path: "/chart",
+                name: "Chart",
+                component: Chart
             },
            
             /*

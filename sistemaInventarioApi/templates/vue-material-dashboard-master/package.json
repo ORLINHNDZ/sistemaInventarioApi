@@ -33,7 +33,10 @@
     "vue-sliding-pagination": "^1.1.2",
     "vue-social-sharing": "2.4.7",
     "vuelidate": "^0.7.6",
-    "vuex": "^3.6.0"
+    "vuex": "^3.6.0",
+    "zingchart": "^2.9.2",
+    "zingchart-vue": "^1.0.1",
+    "zinggrid": "^1.1.1"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "4.2.3",

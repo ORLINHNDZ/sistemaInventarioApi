@@ -113,7 +113,8 @@ export default {
 			Store.addToCart(product);
 		},
 		onConfirm () {
-        this.value = 'Agreed'
+         this.value = 'Agreed'
+         router.push('/checkout')
 		},
 		onCancel () {
 			this.value = 'Disagreed'

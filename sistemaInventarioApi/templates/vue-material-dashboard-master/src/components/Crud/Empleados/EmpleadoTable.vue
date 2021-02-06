@@ -53,9 +53,11 @@
     </md-table>
     <div class="center" >
     <nav class="pagination" role="navegation" aria-label="pagination">
+      <div class="centera">
       <md-button  class="pagination-previous" v-on:click="changePage( page - 1 )">Anterior</md-button>
           <a class="b"> {{page}} </a>
       <md-button  class="pagination-next" v-on:click="changePage( page + 1 )" >Siguiente</md-button>
+      </div>
     </nav>
     </div>
   </div>
@@ -119,6 +121,12 @@ export default {
 
 <style>
 .center {
+  margin: center;
+  width: 95%; 
+  padding: 10px;
+  text-align: center;
+}
+.centera {
   margin: center;
   width: 95%; 
   padding: 10px;

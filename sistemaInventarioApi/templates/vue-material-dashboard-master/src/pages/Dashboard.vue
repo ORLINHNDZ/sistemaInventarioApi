@@ -11,18 +11,18 @@
           data-background-color="blue"
         >
           <template slot="content">
-            <h4 class="title">Daily Sales</h4>
+            <h4 class="title">Ventas Diarias</h4>
             <p class="category">
               <span class="text-success"
                 ><i class="fas fa-long-arrow-alt-up"></i> 55%
               </span>
-              increase in today sales.
+              incremento en ventas.
             </p>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>access_time</md-icon>
+              <md-icon>Ultima Conexión</md-icon>
               updated 4 minutes ago
             </div>
           </template>
@@ -39,16 +39,16 @@
           data-background-color="red"
         >
           <template slot="content">
-            <h4 class="title">Email Subscription</h4>
+            <h4 class="title">Productos Agregados</h4>
             <p class="category">
-              Last Campaign Performance
+              Nuevos Artículos
             </p>
           </template>
 
           <template slot="footer">
             <div class="stats">
-              <md-icon>access_time</md-icon>
-              updated 10 days ago
+              <md-icon>Tiempo de Acceso</md-icon>
+              Actualizado hace 2 días
             </div>
           </template>
         </chart-card>
@@ -63,9 +63,9 @@
           data-background-color="green"
         >
           <template slot="content">
-            <h4 class="title">Completed Tasks</h4>
+            <h4 class="title">Horas Concurridas</h4>
             <p class="category">
-              Last Campaign Performance
+              Tiempo en venta
             </p>
           </template>
 
@@ -77,51 +77,30 @@
           </template>
         </chart-card>
       </div>
+      
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
+      
         <stats-card data-background-color="green">
           <template slot="header">
             <md-icon>store</md-icon>
           </template>
 
           <template slot="content">
-            <p class="category">Revenue</p>
+            <p class="category">Total de Ingreso diario</p>
             <h3 class="title">$34,245</h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>date_range</md-icon>
-              Last 24 Hours
+              Ultimas 24 horas
             </div>
           </template>
         </stats-card>
       </div>
-      <div
-        class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
-      >
-        <stats-card data-background-color="orange">
-          <template slot="header">
-            <md-icon>content_copy</md-icon>
-          </template>
-
-          <template slot="content">
-            <p class="category">Used Space</p>
-            <h3 class="title">
-              49/50
-              <small>GB</small>
-            </h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon class="text-danger">warning</md-icon>
-              <a href="#pablo">Get More Space...</a>
-            </div>
-          </template>
-        </stats-card>
-      </div>
+      
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
@@ -131,14 +110,14 @@
           </template>
 
           <template slot="content">
-            <p class="category">Fixed Issues</p>
+            <p class="category">Advertencias</p>
             <h3 class="title">75</h3>
           </template>
 
           <template slot="footer">
             <div class="stats">
               <md-icon>local_offer</md-icon>
-              Tracked from Github
+              Grado bajo
             </div>
           </template>
         </stats-card>
@@ -146,31 +125,15 @@
       <div
         class="md-layout-item md-medium-size-50 md-xsmall-size-100 md-size-25"
       >
-        <stats-card data-background-color="blue">
-          <template slot="header">
-            <i class="fab fa-twitter"></i>
-          </template>
-
-          <template slot="content">
-            <p class="category">Folowers</p>
-            <h3 class="title">+245</h3>
-          </template>
-
-          <template slot="footer">
-            <div class="stats">
-              <md-icon>update</md-icon>
-              Just Updated
-            </div>
-          </template>
-        </stats-card>
+        
       </div>
       <div
         class="md-layout-item md-medium-size-100 md-xsmall-size-100 md-size-50"
       >
         <md-card>
           <md-card-header data-background-color="orange">
-            <h4 class="title">Employees Stats</h4>
-            <p class="category">New employees on 15th September, 2016</p>
+            <h4 class="title">Personal</h4>
+            <p class="category">Personal, 2021</p>
           </md-card-header>
           <md-card-content>
            
@@ -182,17 +145,17 @@
       >
         <nav-tabs-card>
           <template slot="content">
-            <span class="md-nav-tabs-title">Tasks:</span>
+            <span class="md-nav-tabs-title">Notas:</span>
             <md-tabs class="md-success" md-alignment="left">
-              <md-tab id="tab-home" md-label="Bugs" md-icon="bug_report">
+              <md-tab id="tab-home" md-label="Problemas" md-icon="bug_report">
                 <nav-tabs-table></nav-tabs-table>
               </md-tab>
 
-              <md-tab id="tab-pages" md-label="Website" md-icon="code">
+              <md-tab id="tab-pages" md-label="Pendientes" md-icon="code">
                 <nav-tabs-table></nav-tabs-table>
               </md-tab>
 
-              <md-tab id="tab-posts" md-label="server" md-icon="cloud">
+              <md-tab id="tab-posts" md-label="IMPORTANTE" md-icon="cloud">
                 <nav-tabs-table></nav-tabs-table>
               </md-tab>
             </md-tabs>
@@ -224,7 +187,7 @@ export default {
       dailySalesChart: {
         data: {
           labels: ["M", "T", "W", "T", "F", "S", "S"],
-          series: [[12, 17, 7, 17, 23, 18, 38]]
+          series: [[20, 17, 7, 17, 23, 18, 38]]
         },
         options: {
           lineSmooth: this.$Chartist.Interpolation.cardinal({
@@ -309,3 +272,12 @@ export default {
   }
 };
 </script>
+<style>
+
+  .center {
+  margin: center;
+  width: 101%; 
+  padding: 10px;
+  text-align: center;
+}
+</style>

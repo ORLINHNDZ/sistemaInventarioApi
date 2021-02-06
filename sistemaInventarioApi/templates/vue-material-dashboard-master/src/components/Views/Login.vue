@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <h1 class="title">INICIO DE SESIÓN</h1>
+    <h1 class="title">INICIO DE SESIÓN INCOME</h1>
     <form action class="form" @submit.prevent="login">
       <label class="form-label" for="#username">username:</label>
       <input

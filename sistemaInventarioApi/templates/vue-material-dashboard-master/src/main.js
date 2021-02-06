@@ -52,6 +52,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import NavBar from '@/components/Views/NavBar.vue'
 import ProductList from '@/components/Views/ProductList.vue'
 import ShoppingCart from '@/components/Views/ShoppingCart.vue'
+import zingchartVue from 'zingchart-vue';
+Vue.component('zingchart', zingchartVue);
+import ZingGrid from "zinggrid";
 
 // configure router
 const router = new VueRouter({
@@ -74,6 +77,7 @@ Vue.use(IconsPlugin)
 Vue.component('NavBar', NavBar)
 Vue.component('ProductList', ProductList)
 Vue.component('ShoppingCart', ShoppingCart)
+Vue.component('zingchart', zingchartVue);
 Vue.use(MdModalDialog)
 
 // Filters
