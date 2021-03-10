@@ -74,8 +74,16 @@ MIDDLEWARE = [
 CORS_ORIGIN_ALLOW_ALL = True
 
 #JWT CONFIG
-
-
+JWT_AUTH = {
+    'JWT_ALLOW_REFRESH': True,
+    'JWT_EXPIRATION_DELTA': timedelta(hours=1),
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=7),
+}
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(hours=1),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=15),
+    'ROTATE_REFRESH_TOKENS': True,
+}
 ROOT_URLCONF = 'MyProject.urls'
 
 TEMPLATES = [

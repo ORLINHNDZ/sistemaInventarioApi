@@ -20,7 +20,7 @@
 	         <md-table-cell>${{ product.precio  }}</md-table-cell>
           <md-table-cell> 
 	         <div class="bottom clearfix">
-	        	<md-button  class="color" type="info" @click='addToCart(product)'>Agregar</md-button>
+	        	<md-button  class="color" type="info" @click='addToCart(product)'>Add to cart</md-button>
 	         </div>
           </md-table-cell>
 	

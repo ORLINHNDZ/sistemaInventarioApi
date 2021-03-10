@@ -1,23 +1,23 @@
 <template>
   <div class="login">
-    <h1 class="title">INICIO DE SESIÓN INCOME</h1>
+    <h1 class="title">INICIO DE SESIÓN</h1>
     <form action class="form" @submit.prevent="login">
-      <label class="form-label" for="#username">Usuario:</label>
+      <label class="form-label" for="#username">username:</label>
       <input
         v-model="username"
         class="form-input"
         type="text"
         id="username"
         required
-        placeholder="Usuario"
+        placeholder="username"
       >
-      <label class="form-label" for="#password">Contraseña:</label>
+      <label class="form-label" for="#password">Password:</label>
       <input
         v-model="password"
         class="form-input"
         type="password"
         id="password"
-        placeholder="Contraseña"
+        placeholder="Password"
       >
      
       <input class="form-submit" type="submit" value="Login">
