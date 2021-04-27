@@ -89,6 +89,12 @@
                 <md-input type="number" id="precio" name="precio" autocomplete="precio" v-model="form.precio" />
                
               </md-field>
+
+              <md-field >
+                <label for="isv">Cantidad</label>
+                <md-input type="number" id="cantidad" name="cantidad" autocomplete="cantidad" v-model="form.cantidad" />
+               
+              </md-field>
             </div>
 
             
@@ -155,7 +161,8 @@ export default {
           nombrePopular: '',
           descripcionProducto: '',
           descuento: '',
-          precio: ''
+          precio: '',
+          cantidad: ''
       }
       }
     },
@@ -171,7 +178,8 @@ export default {
           nombrePopular:this.form.nombrePopular,
           descripcionProducto:this.form.descripcionProducto,
           descuento:this.form.descuento,
-          precio:this.form.precio
+          precio:this.form.precio,
+          cantidad:this.form.cantidad
         }
         var router = this.$router
         var id = this.$route.params.id

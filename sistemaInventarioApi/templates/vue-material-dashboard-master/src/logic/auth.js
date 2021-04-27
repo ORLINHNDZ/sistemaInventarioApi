@@ -25,6 +25,7 @@ export function loginUser(username, password) {
             reject(err)
         }
     })
+    
 }
 
 export function logoutUser() {

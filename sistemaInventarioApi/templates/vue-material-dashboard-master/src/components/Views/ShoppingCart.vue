@@ -11,6 +11,7 @@
         <md-table-cell><h6>Producto</h6></md-table-cell>
         <md-table-cell><h6>Precio</h6></md-table-cell>
         <md-table-cell><h6>Cantidad</h6></md-table-cell>
+        <md-table-cell><h6>ISV</h6></md-table-cell>
         <md-table-cell><h6>Acciones</h6></md-table-cell>
      	</md-table-row>
 
@@ -20,8 +21,9 @@
         <md-table-cell>{{ prods.details.nombreProducto }}</md-table-cell>
         <md-table-cell>{{ prods.details.precio }}</md-table-cell>
         <md-table-cell>{{ prods.cantidad }}</md-table-cell>
+        <md-table-cell>{{ prods.details.isv }}</md-table-cell>
 		<template >
-        <md-table-cell><button class="material-icons" type="success"  @click='addToCart(cart.details)' size="mini">add</button>
+        <md-table-cell><button class="material-icons" type="success"    @click="cantidadMas" size="mini">add</button>
       	<button class="material-icons" type="danger"  @click='removeFromCart(cart.details.id)' size="mini">remove</button ></md-table-cell>
          </template>
       	</md-table-row>
@@ -29,17 +31,27 @@
 		 
 		
 	</md-field>
-	<md-dialog :md-active.sync="showDialog">
-      <md-dialog-title>Preferences</md-dialog-title>
-
-      <md-tabs md-dynamic-height>
-        <md-tab md-label="General">
+  
+	<md-dialog :md-active.sync="showDialog" class="factura">
+      <div class="center">
+      <p>Fecha y hora <br> RTN: 020302938273929</p>
+      <md-dialog-title>CONVENIENCIAS TROCHEZ</md-dialog-title>
+      <p>La Masica, Atlántida <br> Calle principal una cuadra antes de Bodega Mangys Store<br>frente a Sazón y Antojos</p>
+      <p>TEL (+504) 9641-2997<br>leutroche20@gmail.com</p>
+      <h6>Datos del Comprador</h6>
+      <p>Fecha de reimpresión:<br>Nombre: CONSUMIDOR FINAL<br>RTN:0000000000000000</p>
+      <h6>---Descripción de la Factura---</h6>
+      <p></p>
+      </div>
+        
           <md-table class="center">
      	<md-table-row >
         <md-table-cell>Producto</md-table-cell>
         <md-table-cell>Precio</md-table-cell>
         <md-table-cell>Cantidad</md-table-cell>
-        <md-table-cell>Acciones</md-table-cell>
+        <md-table-cell>ISV</md-table-cell>
+
+        
      	</md-table-row>
 
 		 <md-table-row  v-for="prods in cart" v-bind:key="prods.id"  >
@@ -48,35 +60,19 @@
         <md-table-cell>{{ prods.details.nombreProducto }}</md-table-cell>
         <md-table-cell>{{ prods.details.precio }}</md-table-cell>
         <md-table-cell>{{ prods.cantidad }}</md-table-cell>
-		<template >
-        <md-table-cell><button class="material-icons" type="success"  @click='addToCart(prods.details)' size="mini">add</button>
-    	<button class="material-icons" type="danger"  @click='removeFromCart(prods.details.id)' size="mini">remove</button ></md-table-cell>
-         </template>
+        <md-table-cell>{{ prods.details.isv }}</md-table-cell>
+		
       	</md-table-row>
 		</md-table>
-    	<p class="center"><b>Total : ${{ totalCost  }}</b></p>
-        </md-tab>
-		
-
-        <md-tab md-label="Activity">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-        </md-tab>
-
-        <md-tab md-label="Account">
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam mollitia dolorum dolores quae commodi impedit possimus qui, atque at voluptates cupiditate. Neque quae culpa suscipit praesentium inventore ducimus ipsa aut.</p>
-        </md-tab>
-      </md-tabs>
-
-      <md-dialog-actions>
-        <md-button class="md-primary" @click="showDialog = false">Close</md-button>
-        <md-button class="md-primary" @click="showDialog = false">Save</md-button>
-      </md-dialog-actions>
+      <p class="center"><b>Total ISV : ${{ totalIsv  }}</b></p>
+    	<p class="center"><b>Total : ${{ totalCost + totalIsv }}</b></p>
+       <div class="center">
+        
+        <md-button class="md-primary" @click="onConfirm">Confirmar</md-button>
+        </div>
+    
     </md-dialog>
+    
     <div class="centerB">
     <md-button class="md-primary md-raised" @click="showDialog = true">Pagar</md-button>
   </div>
@@ -98,30 +94,38 @@ export default {
 		totalCost(){
      		 return Store.totalCost
    		 },
+    totalIsv(){
+     		 return Store.totalIsv
+   		 },
+    cantidadMas(){
+     		 return Store.cantidadMas
+   		 },    
 		cart(){
 			return Store.$data.cart
 		}
 		
 	},
 	methods: {
-		methods: {
+    
 		removeFromCart(id){
 			Store.removeFromCart(id)
 		},
 		
 		addToCart(product){
-			Store.addToCart(product);
-		},
+  		Store.addToCart(product)
+    },
+    
 		onConfirm () {
          this.value = 'Agreed'
-         router.push('/checkout')
+         var router = this.$router;
+         this.$router.go(0);
 		},
 		onCancel () {
 			this.value = 'Disagreed'
 		},
 		}
 	}
-}
+
 </script>
 <style lang="scss" scoped>
   .md-dialog  .md-dialog-container {
@@ -136,6 +140,14 @@ export default {
 .centerB {
   margin: center;
   width: 95%; 
+  padding: 10px;
+  text-align: center;
+}
+.factura {
+ 
+  height: 868px;
+  max-width: 768px;
+  max-height: 768px;
   padding: 10px;
   text-align: center;
 }

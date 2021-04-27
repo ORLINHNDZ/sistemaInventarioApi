@@ -13,7 +13,15 @@ export const Store = new Vue({
 			return this.cart.reduce((accum, product) => {	
 				return accum + product.details.precio * product.cantidad
 			}, 0)
-		}
+		},
+
+		totalIsv(){
+			return this.cart.reduce((accum, product) => {	
+				return accum + (product.details.precio * product.details.isv) 
+			}, 0)
+		},
+		
+
 	},
 	methods: {
 		addToCart(product){
@@ -24,7 +32,7 @@ export const Store = new Vue({
 		    if (locationInCart === -1) {
 		        this.cart.push({
 		          details: product,
-		          cantidad: 1
+		          cantidad: 1,
 		        })
 		    } else {
 				this.cart[locationInCart].cantidad++

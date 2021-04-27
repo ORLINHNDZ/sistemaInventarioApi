@@ -22,6 +22,7 @@
         <md-table-cell>Descripción</md-table-cell>
         <md-table-cell>Descuento</md-table-cell>
         <md-table-cell>Precio</md-table-cell>
+        <md-table-cell>Cantidad</md-table-cell>
         <md-table-cell>Acciones</md-table-cell>
       </md-table-row>
       <md-table-row  v-for="producto in productos" v-bind:key="producto.nombreProducto"  >
@@ -35,6 +36,7 @@
         <md-table-cell>{{ producto.descripcionProducto }}</md-table-cell>
         <md-table-cell>{{ producto.descuento }}</md-table-cell>
         <md-table-cell>{{ producto.precio }}</md-table-cell>
+        <md-table-cell>{{ producto.cantidad }}</md-table-cell>
         <md-table-cell>
           <router-link :to="{name:'ProductoEditar', params:{id:producto.id}}">Editar</router-link>
           
